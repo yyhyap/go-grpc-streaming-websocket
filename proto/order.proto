@@ -1,0 +1,34 @@
+syntax="proto3";
+
+option go_package = "./proto";
+
+package order_proto;
+
+service OrderService {
+    rpc GreetCustomer(GreetRequest) returns (GreetResponse) {}
+    rpc CreateOrderByIngredients(stream Ingredient) returns (OrderMessage) {}
+    rpc GenerateRecommendedIngredientsCombo(EmptyParam) returns (stream Ingredient) {}
+    rpc ProcessOrder(stream OrderId) returns (stream OrderId) {}
+}
+
+message EmptyParam {}
+
+message GreetRequest {
+    string name = 1;
+}
+
+message GreetResponse {
+    string name = 1;
+}
+
+message Ingredient {
+    string name = 1;
+}
+
+message OrderMessage {
+    string messsage = 1;
+}
+
+message OrderId {
+    string orderId = 1;
+}
